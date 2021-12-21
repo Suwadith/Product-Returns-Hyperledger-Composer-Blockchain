@@ -15,7 +15,7 @@
 rule customerSeeSelf{
   description: "Customers can see themselves"
   participant(p): "org.blkreturns.net.Customer"
-  operation: ALL
+  operation: READ, UPDATE
   resource(r): "org.blkreturns.net.Customer"
   condition: (p.getIdentifier()==r.getIdentifier())
   action: ALLOW
@@ -24,7 +24,7 @@ rule customerSeeSelf{
 rule retailStoreHandlerSeeSelf{
   description: "Retail Store Handlers can see themselves"
   participant(p): "org.blkreturns.net.RetailStoreHandler"
-  operation: ALL
+  operation: READ, UPDATE
   resource(r): "org.blkreturns.net.RetailStoreHandler"
   condition: (p.getIdentifier()==r.getIdentifier())
   action: ALLOW
@@ -33,7 +33,7 @@ rule retailStoreHandlerSeeSelf{
 rule truckDriverSeeSelf{
   description: "Truck Drivers can see themselves"
   participant(p): "org.blkreturns.net.TruckDriver"
-  operation: ALL
+  operation: READ, UPDATE
   resource(r): "org.blkreturns.net.TruckDriver"
   condition: (p.getIdentifier()==r.getIdentifier())
   action: ALLOW
@@ -42,7 +42,7 @@ rule truckDriverSeeSelf{
 rule warehouseManagerSeeSelf{
   description: "Warehouse Managers can see themselves"
   participant(p): "org.blkreturns.net.WarehouseManager"
-  operation: ALL
+  operation: READ, UPDATE
   resource(r): "org.blkreturns.net.WarehouseManager"
   condition: (p.getIdentifier()==r.getIdentifier())
   action: ALLOW
@@ -51,7 +51,7 @@ rule warehouseManagerSeeSelf{
 rule supplierSeeSelf{
   description: "Suppliers can see themselves"
   participant(p): "org.blkreturns.net.Supplier"
-  operation: ALL
+  operation: READ, UPDATE
   resource(r): "org.blkreturns.net.Supplier"
   condition: (p.getIdentifier()==r.getIdentifier())
   action: ALLOW
