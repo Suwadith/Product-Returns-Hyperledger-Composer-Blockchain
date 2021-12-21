@@ -12,46 +12,46 @@
  * limitations under the License.
  */
 
-rule customerSeeSelf{
+rule customerSeeSelf {
   description: "Customers can see themselves"
   participant(p): "org.blkreturns.net.Customer"
-  operation: READ, UPDATE
+  operation: ALL
   resource(r): "org.blkreturns.net.Customer"
   condition: (p.getIdentifier()==r.getIdentifier())
   action: ALLOW
 }
 
-rule retailStoreHandlerSeeSelf{
+rule retailStoreHandlerSeeSelf {
   description: "Retail Store Handlers can see themselves"
   participant(p): "org.blkreturns.net.RetailStoreHandler"
-  operation: READ, UPDATE
+  operation: ALL
   resource(r): "org.blkreturns.net.RetailStoreHandler"
   condition: (p.getIdentifier()==r.getIdentifier())
   action: ALLOW
 }
 
-rule truckDriverSeeSelf{
+rule truckDriverSeeSelf {
   description: "Truck Drivers can see themselves"
   participant(p): "org.blkreturns.net.TruckDriver"
-  operation: READ, UPDATE
+  operation: ALL
   resource(r): "org.blkreturns.net.TruckDriver"
   condition: (p.getIdentifier()==r.getIdentifier())
   action: ALLOW
 }
 
-rule warehouseManagerSeeSelf{
+rule warehouseManagerSeeSelf {
   description: "Warehouse Managers can see themselves"
   participant(p): "org.blkreturns.net.WarehouseManager"
-  operation: READ, UPDATE
+  operation: ALL
   resource(r): "org.blkreturns.net.WarehouseManager"
   condition: (p.getIdentifier()==r.getIdentifier())
   action: ALLOW
 }
 
-rule supplierSeeSelf{
+rule supplierSeeSelf {
   description: "Suppliers can see themselves"
   participant(p): "org.blkreturns.net.Supplier"
-  operation: READ, UPDATE
+  operation: ALL
   resource(r): "org.blkreturns.net.Supplier"
   condition: (p.getIdentifier()==r.getIdentifier())
   action: ALLOW
