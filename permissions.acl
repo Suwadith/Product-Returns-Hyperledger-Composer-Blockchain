@@ -12,6 +12,51 @@
  * limitations under the License.
  */
 
+rule customerSeeSelf{
+  description: "Customers can see themselves"
+  participant(p): "org.blkreturns.net.Customer"
+  operation: ALL
+  resource(r): "org.blkreturns.net.Customer"
+  condition: (p.getIdentifier()==r.getIdentifier())
+  action: ALLOW
+}
+
+rule retailStoreHandlerSeeSelf{
+  description: "Retail Store Handlers can see themselves"
+  participant(p): "org.blkreturns.net.RetailStoreHandler"
+  operation: ALL
+  resource(r): "org.blkreturns.net.RetailStoreHandler"
+  condition: (p.getIdentifier()==r.getIdentifier())
+  action: ALLOW
+}
+
+rule truckDriverSeeSelf{
+  description: "Truck Drivers can see themselves"
+  participant(p): "org.blkreturns.net.TruckDriver"
+  operation: ALL
+  resource(r): "org.blkreturns.net.TruckDriver"
+  condition: (p.getIdentifier()==r.getIdentifier())
+  action: ALLOW
+}
+
+rule warehouseManagerSeeSelf{
+  description: "Warehouse Managers can see themselves"
+  participant(p): "org.blkreturns.net.WarehouseManager"
+  operation: ALL
+  resource(r): "org.blkreturns.net.WarehouseManager"
+  condition: (p.getIdentifier()==r.getIdentifier())
+  action: ALLOW
+}
+
+rule supplierSeeSelf{
+  description: "Suppliers can see themselves"
+  participant(p): "org.blkreturns.net.Supplier"
+  operation: ALL
+  resource(r): "org.blkreturns.net.Supplier"
+  condition: (p.getIdentifier()==r.getIdentifier())
+  action: ALLOW
+}
+
 rule SystemACL {
     description: "System ACL to permit all access"
     participant: "org.hyperledger.composer.system.Participant"
