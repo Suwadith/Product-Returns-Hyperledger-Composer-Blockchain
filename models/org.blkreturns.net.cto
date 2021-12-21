@@ -17,3 +17,197 @@
  */
 
 namespace org.blkreturns.net
+
+/* 
+* Concept that stores the name of any user related entities.
+*/
+concept Name{
+  o String firstName
+  o String fastName
+}
+
+/* 
+* Concept used to store different addresses.
+*/
+concept Address {
+  o String number
+  o String streetName
+  o String postalCode
+  o String county
+}
+
+/* 
+* Enumerated type used to specify the current owner of the asset (Product) 
+* This gets updated after every handoff.
+*/
+enum Ownership {
+  o CUSTOMER
+  o RETAIL
+  o TRUCK
+  o WAREHOUSE
+  o SUPPLIER
+}
+
+/* 
+* Enumerated type used to specify the reason that made the customer 
+* to intiate the return process.
+*/
+enum ReturnReason {
+  o DAMAGED
+  o WRONGPRODUCT
+  o REFUND
+}
+
+/* 
+* Enumerated type used to specify the different stages of the 
+* return reason approval which is updated by the warehouse manager. 
+*/
+enum ReturnReasonValidation {
+  o PENDING
+  o ACCPETED
+  o DECLINED
+}
+
+/*
+* Initial participant of this application - Customer.
+* customerId is used as the identifier.
+*/
+participant Customer identified by customerId {
+  o String customerId
+  o Name name
+  o Address address
+  o Integer mobileNo
+  o DateTime dateOfBirth
+}
+
+/*
+* Second participant of this application - Retail store handler.
+* Who gets to accept the returned product from the customer.
+* retailStoreHandlerId is used as the identifier.
+*/
+participant RetailStoreHandler identified by retailStoreHandlerId {
+  o String retailStoreHandlerId
+  o Name name
+  o String retailStoreName
+  o Address retailStoreAddress
+}
+
+/*
+* Third participant of this application - Truck driver.
+* Who accepts the returned product from the Retail store handler.
+* driverId is used as the identifier.
+*/
+participant TruckDriver identified by driverId {
+  o String driverId
+  o Name name
+  o String trcukCompanyName
+  o Address truckCompanyAddress
+}
+
+/*
+* Fourth participant of this application - Warehouse manager.
+* Who accepts the returned product from the Truck driver.
+* Plays a major part in the decision making of whether to approve 
+* the return request or not.
+* managerId is used as the identifier.
+*/
+participant WarehouseManager identified by managerId {
+  o String managerId
+  o Name name
+  o Address warehouseAddress
+  o String warehouseId
+}
+
+/*
+* Fifth and the final participant of this application - Supplier.
+* Who accepts the returned product from the Warehouse manager.
+* supplierId is used as the identifier.
+*/
+participant Supplier identified by supplierId {
+  o String supplierId
+  o Name name
+  o Address productionAddress
+}
+ 
+/* 
+*The only asset of this application.
+* Holds a history of handoff locations, handoff timestamps, and 
+* much more vital information regarding the products integrity.
+* saleId is used as the identifier.
+*/
+asset Product identified by saleId {
+  o String productId
+  o String saleId
+  o String name
+  o String category
+  o Double price
+  --> Customer customer
+  o ReturnReason returnReason
+  o Ownership currentOwner
+  o Address[] handoffLocationHistory
+  o DateTime[] handoffTimestampHistory
+  o DateTime purchaseTimestamp
+  o ReturnReasonValidation returnReasonValidation
+}
+
+/* 
+* populate all the initial participants, asesets(products)  
+*/
+transaction InitialiseAll {}
+
+
+transaction addCustomer{
+  o Customer newCustomer
+}
+
+transaction addRetailStoreHandler{
+  o RetailStoreHandler newRetailStoreHandler
+}
+
+transaction addTruckDriver{
+  o TruckDriver newTruckDriver
+}
+
+transaction addWarehouseManager{
+  o WarehouseManager newWarehouseManager
+}
+
+transaction addSupplier{
+  o Supplier newSupplier
+}
+
+/* 
+* Initial transaction that represents the handoff between 
+* the Customer and the Retail store handler
+*/
+transaction CustomerHandOff {
+  --> Product product
+  --> RetailStoreHandler retailStoreHandler
+}
+
+/* 
+* Second transaction that represents the handoff between 
+* the Retail store handler and the Truck driver
+*/
+transaction RetailerHandOff {
+  --> Product product
+  --> TruckDriver truckDriver
+}
+
+/* 
+* Third transaction that represents the handoff between 
+* the Truck driver and the Warehouse manager
+*/
+transaction DriverHandOff {
+  --> Product product
+  --> WarehouseManager warehouseManager
+}
+
+/* 
+* Final transaction that represents the handoff between 
+* the Warehouse manager and the original supplier
+*/
+transaction ManagerHandOff {
+  --> Product product
+  --> Supplier supplier
+}
