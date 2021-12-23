@@ -23,14 +23,14 @@ namespace org.blkreturns.net
 */
 concept Name{
   o String firstName
-  o String fastName
+  o String lastName
 }
 
 /* 
 * Concept used to store different addresses.
 */
 concept Address {
-  o String number
+  o String buildingNumber
   o String streetName
   o String postalCode
   o String county
