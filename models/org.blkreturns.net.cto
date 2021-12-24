@@ -115,7 +115,7 @@ participant WarehouseManager identified by managerId {
   o String managerId
   o Name name
   o Address warehouseAddress
-  o String warehouseId
+  // o String warehouseId
 }
 
 /*
@@ -155,26 +155,6 @@ asset Product identified by saleId {
 */
 transaction InitialiseAll {}
 
-
-// transaction addCustomer{
-//   o Customer newCustomer
-// }
-
-// transaction addRetailStoreHandler{
-//   o RetailStoreHandler newRetailStoreHandler
-// }
-
-// transaction addTruckDriver{
-//   o TruckDriver newTruckDriver
-// }
-
-// transaction addWarehouseManager{
-//   o WarehouseManager newWarehouseManager
-// }
-
-// transaction addSupplier{
-//   o Supplier newSupplier
-// }
 
 /* 
 * Initial transaction that represents the handoff between 
