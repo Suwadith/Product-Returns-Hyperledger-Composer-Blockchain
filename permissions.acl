@@ -42,7 +42,7 @@ rule customerCanHandOff {
 rule customerSeeProduct {
   description: "Customers can see their products"
   participant(p): "org.blkreturns.net.Customer"
-  operation: READ
+  operation: READ, UPDATE
   resource(r): "org.blkreturns.net.Product"
   condition: (p.getIdentifier()==r.customer.getIdentifier())
   action: ALLOW
