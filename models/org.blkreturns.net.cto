@@ -65,7 +65,7 @@ enum ReturnReason {
 enum ReturnReasonValidation {
   o PENDING
   o ACCPETED
-  o DECLINED
+  // o DECLINED
 }
 
 /*
