@@ -24,6 +24,7 @@ rule customerSeeSelf {
 rule customerSeeRetailers {
   description: "Customers can see retail store handlers data"
   participant: "org.blkreturns.net.Customer"
+  //give create and try
   operation: READ
   resource: "org.blkreturns.net.RetailStoreHandler"
   action: ALLOW
@@ -35,6 +36,15 @@ rule customerCanHandOff {
   operation: CREATE
   resource: "org.blkreturns.net.CustomerHandOff"
   // condition: (p.getIdentifier()==r.getIdentifier())
+  action: ALLOW
+}
+
+rule customerSeeProduct {
+  description: "Customers can see their products"
+  participant(p): "org.blkreturns.net.Customer"
+  operation: READ
+  resource(r): "org.blkreturns.net.Product"
+  condition: (p.getIdentifier()==r.customer.getIdentifier())
   action: ALLOW
 }
 
