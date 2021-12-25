@@ -21,6 +21,14 @@ rule customerSeeSelf {
   action: ALLOW
 }
 
+rule customerSeeRetailers {
+  description: "Customers can see retail store handlers data"
+  participant: "org.blkreturns.net.Customer"
+  operation: READ
+  resource: "org.blkreturns.net.RetailStoreHandler"
+  action: ALLOW
+}
+
 rule retailStoreHandlerSeeSelf {
   description: "Retail Store Handlers can see themselves"
   participant(p): "org.blkreturns.net.RetailStoreHandler"
