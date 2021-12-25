@@ -29,6 +29,15 @@ rule customerSeeRetailers {
   action: ALLOW
 }
 
+rule customerCanHandOff {
+  description: "Customers can handoff products to retail store handlers"
+  participant: "org.blkreturns.net.Customer"
+  operation: CREATE
+  resource: "org.blkreturns.net.CustomerHandOff"
+  // condition: (p.getIdentifier()==r.getIdentifier())
+  action: ALLOW
+}
+
 rule retailStoreHandlerSeeSelf {
   description: "Retail Store Handlers can see themselves"
   participant(p): "org.blkreturns.net.RetailStoreHandler"
