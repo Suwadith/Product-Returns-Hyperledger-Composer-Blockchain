@@ -142,6 +142,10 @@ asset Product identified by saleId {
   o String category
   o Double price
   --> Customer customer
+  --> RetailStoreHandler retailStoreHandler optional
+  --> TruckDriver truckDriver optional
+  --> WarehouseManager warehouseManager optional
+  --> Supplier supplier optional
   o ReturnReason returnReason
   o Ownership currentOwner
   o Address[] handoffLocationHistory
