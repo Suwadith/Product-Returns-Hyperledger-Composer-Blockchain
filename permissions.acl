@@ -139,6 +139,36 @@ rule warehouseManagerSeeSelf {
   action: ALLOW
 }
 
+rule warehouseManagerSeeSupplier {
+  description: "Warehouse Managers can see Suppliers data"
+  participant: "org.blkreturns.net.WarehouseManager"
+  operation: READ
+  resource: "org.blkreturns.net.Supplier"
+  action: ALLOW
+}
+
+rule warehouseManagerCanHandOff {
+  description: "Warehouse Managers can handoff products to Suppliers"
+  participant: "org.blkreturns.net.WarehouseManager"
+  operation: CREATE
+  resource: "org.blkreturns.net.ManagerHandOff"
+  action: ALLOW
+}
+
+rule warehouseManagerSeeProduct {
+  description: "Warehouse Managers can see the prodcuts they are handling"
+  participant(p): "org.blkreturns.net.WarehouseManager"
+  operation: READ, UPDATE
+  resource(r): "org.blkreturns.net.Product"
+  condition: (p.getIdentifier()==r.warehouseManager.getIdentifier())
+  action: ALLOW
+}
+
+
+
+
+
+
 rule supplierSeeSelf {
   description: "Suppliers can see themselves"
   participant(p): "org.blkreturns.net.Supplier"
@@ -147,6 +177,21 @@ rule supplierSeeSelf {
   condition: (p.getIdentifier()==r.getIdentifier())
   action: ALLOW
 }
+
+rule supplierSeeProduct {
+  description: "Suppliers can see the prodcuts they are handling"
+  participant(p): "org.blkreturns.net.Supplier"
+  operation: READ, UPDATE
+  resource(r): "org.blkreturns.net.Product"
+  condition: (p.getIdentifier()==r.supplier.getIdentifier())
+  action: ALLOW
+}
+
+
+
+
+
+
 
 rule SystemACL {
     description: "System ACL to permit all access"
