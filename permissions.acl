@@ -99,6 +99,37 @@ rule truckDriverSeeSelf {
   action: ALLOW
 }
 
+rule truckDriverSeeWarehouseManagers {
+  description: "Truck Drivers can see warehouse managers data"
+  participant: "org.blkreturns.net.TruckDriver"
+  operation: READ
+  resource: "org.blkreturns.net.WarehouseManager"
+  action: ALLOW
+}
+
+rule truckDriverCanHandOff {
+  description: "Truck Drivers can handoff products to warehouse managers"
+  participant: "org.blkreturns.net.TruckDriver"
+  operation: CREATE
+  resource: "org.blkreturns.net.DriverHandOff"
+  action: ALLOW
+}
+
+rule truckDriverSeeProduct {
+  description: "Truck Drivers can see the prodcuts they are handling"
+  participant(p): "org.blkreturns.net.TruckDriver"
+  operation: READ, UPDATE
+  resource(r): "org.blkreturns.net.Product"
+  condition: (p.getIdentifier()==r.truckDriver.getIdentifier())
+  action: ALLOW
+}
+
+
+
+
+
+
+
 rule warehouseManagerSeeSelf {
   description: "Warehouse Managers can see themselves"
   participant(p): "org.blkreturns.net.WarehouseManager"
