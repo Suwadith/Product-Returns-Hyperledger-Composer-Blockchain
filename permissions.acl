@@ -24,7 +24,6 @@ rule customerSeeSelf {
 rule customerSeeRetailers {
   description: "Customers can see retail store handlers data"
   participant: "org.blkreturns.net.Customer"
-  //give create and try
   operation: READ
   resource: "org.blkreturns.net.RetailStoreHandler"
   action: ALLOW
@@ -35,7 +34,6 @@ rule customerCanHandOff {
   participant: "org.blkreturns.net.Customer"
   operation: CREATE
   resource: "org.blkreturns.net.CustomerHandOff"
-  // condition: (p.getIdentifier()==r.getIdentifier())
   action: ALLOW
 }
 
@@ -48,6 +46,11 @@ rule customerSeeProduct {
   action: ALLOW
 }
 
+
+
+
+
+
 rule retailStoreHandlerSeeSelf {
   description: "Retail Store Handlers can see themselves"
   participant(p): "org.blkreturns.net.RetailStoreHandler"
@@ -56,6 +59,36 @@ rule retailStoreHandlerSeeSelf {
   condition: (p.getIdentifier()==r.getIdentifier())
   action: ALLOW
 }
+
+rule retailerSeeTruckDrivers {
+  description: "retail store handlers can see truck drivers data"
+  participant: "org.blkreturns.net.RetailStoreHandler"
+  operation: READ
+  resource: "org.blkreturns.net.TruckDriver"
+  action: ALLOW
+}
+
+rule retailerCanHandOff {
+  description: "retail store handlers can handoff products to truck drivers"
+  participant: "org.blkreturns.net.RetailStoreHandler"
+  operation: CREATE
+  resource: "org.blkreturns.net.RetailerHandOff"
+  action: ALLOW
+}
+
+rule retailerSeeProduct {
+  description: "retail store handlers can see the prodcuts they are handling"
+  participant(p): "org.blkreturns.net.RetailStoreHandler"
+  operation: READ, UPDATE
+  resource(r): "org.blkreturns.net.Product"
+  condition: (p.getIdentifier()==r.retailStoreHandler.getIdentifier())
+  action: ALLOW
+}
+
+
+
+
+
 
 rule truckDriverSeeSelf {
   description: "Truck Drivers can see themselves"
