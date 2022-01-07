@@ -46,11 +46,6 @@ rule customerSeeProduct {
   action: ALLOW
 }
 
-
-
-
-
-
 rule retailStoreHandlerSeeSelf {
   description: "Retail Store Handlers can see themselves"
   participant(p): "org.blkreturns.net.RetailStoreHandler"
@@ -84,11 +79,6 @@ rule retailerSeeProduct {
   condition: (p.getIdentifier()==r.retailStoreHandler.getIdentifier())
   action: ALLOW
 }
-
-
-
-
-
 
 rule truckDriverSeeSelf {
   description: "Truck Drivers can see themselves"
@@ -124,12 +114,6 @@ rule truckDriverSeeProduct {
   action: ALLOW
 }
 
-
-
-
-
-
-
 rule warehouseManagerSeeSelf {
   description: "Warehouse Managers can see themselves"
   participant(p): "org.blkreturns.net.WarehouseManager"
@@ -164,11 +148,6 @@ rule warehouseManagerSeeProduct {
   action: ALLOW
 }
 
-
-
-
-
-
 rule supplierSeeSelf {
   description: "Suppliers can see themselves"
   participant(p): "org.blkreturns.net.Supplier"
@@ -186,12 +165,6 @@ rule supplierSeeProduct {
   condition: (p.getIdentifier()==r.supplier.getIdentifier())
   action: ALLOW
 }
-
-
-
-
-
-
 
 rule SystemACL {
     description: "System ACL to permit all access"

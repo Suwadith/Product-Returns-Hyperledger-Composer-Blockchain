@@ -65,7 +65,6 @@ enum ReturnReason {
 enum ReturnReasonValidation {
   o PENDING
   o ACCEPTED
-  // o DECLINED
 }
 
 /*
@@ -115,7 +114,6 @@ participant WarehouseManager identified by managerId {
   o String managerId
   o Name name
   o Address warehouseAddress
-  // o String warehouseId
 }
 
 /*
